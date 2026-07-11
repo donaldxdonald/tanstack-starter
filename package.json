@@ -11,6 +11,8 @@
     "build": "vp build",
     "preview": "vp preview",
     "test": "vp test run",
+    "lint:eslint": "eslint .",
+    "lint:eslint:fix": "eslint . --fix",
     "prepare": "vp config",
     "setup:cloudflare": "node scripts/setup-cloudflare-workers.mjs",
     "cf:preview": "vp build && wrangler dev",
@@ -33,6 +35,8 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^9.1.0",
+    "@eslint-react/eslint-plugin": "^5.13.2",
     "@rolldown/plugin-babel": "^0.2.3",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/devtools-vite": "latest",
@@ -44,6 +48,8 @@
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^6.0.1",
     "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^10.6.0",
+    "eslint-plugin-react-refresh": "^0.5.3",
     "jsdom": "^28.1.0",
     "typescript": "^6.0.2",
     "vite": "catalog:",
