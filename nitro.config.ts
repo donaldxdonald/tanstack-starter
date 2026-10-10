@@ -1,5 +1,5 @@
-import { defineConfig } from "nitro";
+import { defineConfig } from 'nitro'
 
 export default defineConfig({
-  preset: "cloudflare_module",
-});
+  preset: process.env.NODE_ENV === 'production' ? 'cloudflare_module' : 'nitro_dev',
+})
