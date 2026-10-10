@@ -7,6 +7,7 @@ import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
 import { nitro } from 'nitro/vite'
+import { fumadocsMdx } from 'fumadocs-mdx/vite'
 
 const config = defineConfig({
   staged: {
@@ -23,6 +24,7 @@ const config = defineConfig({
   },
   resolve: { tsconfigPaths: true },
   plugins: lazyPlugins(() => [
+    fumadocsMdx(),
     devtools(),
     nitro({ rollupConfig: { external: [/^@sentry\//] } }),
     tailwindcss(),

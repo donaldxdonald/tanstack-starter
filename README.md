@@ -12,6 +12,7 @@ A batteries-included full-stack React starter built with TanStack Start and Vite
 - [TanStack Query](https://tanstack.com/query) with SSR integration
 - [Tailwind CSS v4](https://tailwindcss.com/) and the Typography plugin
 - [Lucide React](https://lucide.dev/) icons
+- [Fumadocs](https://www.fumadocs.dev/) with MDX content and preset `/privacy` and `/terms` pages
 - TanStack Router and Query devtools
 
 ### Tooling
@@ -60,11 +61,21 @@ Start editing the home route at `src/routes/index.tsx`.
 ## Project Structure
 
 ```text
+content/
+└── legal/                # Privacy and terms MDX content
+
 src/
+├── components/
+│   └── legal-page.tsx    # Shared Fumadocs page renderer
 ├── integrations/
 │   └── tanstack-query/   # Query client and devtools integration
+├── lib/
+│   └── legal.ts          # Fumadocs content source
 ├── routes/
 │   ├── __root.tsx        # Root document, metadata, and devtools
+│   ├── _legal.tsx        # Pathless Fumadocs layout
+│   ├── _legal.privacy.tsx # /privacy
+│   ├── _legal.terms.tsx   # /terms
 │   └── index.tsx         # Home route
 ├── router.tsx            # Router and Query SSR integration
 ├── routeTree.gen.ts      # Generated route tree
@@ -75,6 +86,7 @@ scripts/
 
 nitro.config.ts            # Nitro deployment preset
 vite.config.ts             # Vite+, React, Start, Nitro, and Tailwind config
+vitest.config.ts           # Unit tests with the Fumadocs MDX plugin
 ```
 
 ## Routing
@@ -102,6 +114,14 @@ import { Link } from '@tanstack/react-router'
 ```
 
 The shared HTML document and app shell live in `src/routes/__root.tsx`.
+
+## Legal Pages
+
+The `/privacy` and `/terms` routes share a Fumadocs layout. Each starts with one placeholder paragraph, not a finished legal document.
+
+Edit `content/legal/privacy.mdx` and `content/legal/terms.mdx` to replace the placeholders. The frontmatter `title` appears in the page heading and sidebar. Browser titles are configured in the corresponding route files.
+
+Fumadocs MDX uses its Vite plugin and Macro API, so no content-generation command is needed. Search is disabled because these pages do not configure a search endpoint.
 
 ## Data Fetching
 

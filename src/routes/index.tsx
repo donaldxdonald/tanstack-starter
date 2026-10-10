@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute('/')({ component: Home })
 
 function Home() {
   return (
@@ -9,6 +9,14 @@ function Home() {
       <p className="mt-4 text-lg">
         Edit <code>src/routes/index.tsx</code> to get started.
       </p>
+      <nav aria-label="Legal" className="mt-8 flex gap-4 text-sm">
+        <Link to="/privacy" className="underline underline-offset-4">
+          Privacy Policy
+        </Link>
+        <Link to="/terms" className="underline underline-offset-4">
+          Terms of Service
+        </Link>
+      </nav>
     </div>
-  );
+  )
 }
