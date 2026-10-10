@@ -10,28 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as LegalRouteImport } from './routes/_legal'
-import { Route as LegalPrivacyRouteImport } from './routes/_legal.privacy'
-import { Route as LegalTermsRouteImport } from './routes/_legal.terms'
+import { Route as LegalRouteRouteImport } from './routes/_legal/route'
+import { Route as LegalPrivacyRouteImport } from './routes/_legal/privacy'
+import { Route as LegalTermsRouteImport } from './routes/_legal/terms'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LegalRoute = LegalRouteImport.update({
+const LegalRouteRoute = LegalRouteRouteImport.update({
   id: '/_legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
-  getParentRoute: () => LegalRoute,
+  getParentRoute: () => LegalRouteRoute,
 } as any)
 const LegalTermsRoute = LegalTermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => LegalRoute,
+  getParentRoute: () => LegalRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -47,7 +47,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_legal': typeof LegalRouteWithChildren
+  '/_legal': typeof LegalRouteRouteWithChildren
   '/_legal/privacy': typeof LegalPrivacyRoute
   '/_legal/terms': typeof LegalTermsRoute
 }
@@ -61,7 +61,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  LegalRoute: typeof LegalRouteWithChildren
+  LegalRouteRoute: typeof LegalRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -77,7 +77,7 @@ declare module '@tanstack/react-router' {
       id: '/_legal'
       path: ''
       fullPath: '/'
-      preLoaderRoute: typeof LegalRouteImport
+      preLoaderRoute: typeof LegalRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_legal/privacy': {
@@ -85,33 +85,33 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof LegalPrivacyRouteImport
-      parentRoute: typeof LegalRoute
+      parentRoute: typeof LegalRouteRoute
     }
     '/_legal/terms': {
       id: '/_legal/terms'
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof LegalTermsRouteImport
-      parentRoute: typeof LegalRoute
+      parentRoute: typeof LegalRouteRoute
     }
   }
 }
 
-interface LegalRouteChildren {
+interface LegalRouteRouteChildren {
   LegalPrivacyRoute: typeof LegalPrivacyRoute
   LegalTermsRoute: typeof LegalTermsRoute
 }
 
-const LegalRouteChildren: LegalRouteChildren = {
+const LegalRouteRouteChildren: LegalRouteRouteChildren = {
   LegalPrivacyRoute: LegalPrivacyRoute,
   LegalTermsRoute: LegalTermsRoute,
 }
 
-const LegalRouteWithChildren = LegalRoute._addFileChildren(LegalRouteChildren)
+const LegalRouteRouteWithChildren = LegalRouteRoute._addFileChildren(LegalRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  LegalRoute: LegalRouteWithChildren,
+  LegalRouteRoute: LegalRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

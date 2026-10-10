@@ -1,5 +1,5 @@
 import { notFound } from '@tanstack/react-router'
-import { DocsBody, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/docs/page'
+import { DocsBody, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/flux/page'
 import defaultMdxComponents from 'fumadocs-ui/mdx'
 import { legalSource } from '#/lib/legal'
 
